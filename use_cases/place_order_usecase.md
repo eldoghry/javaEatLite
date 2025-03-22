@@ -29,7 +29,7 @@ Place Order
 
 #### 3. Preconditions
 
-- The user has installed the app or accessed the web version.
+- The user has accessed the web version.
 - The database contains restaurant and product details.
 - The system supports guest checkout (for unauthenticated users).
 
