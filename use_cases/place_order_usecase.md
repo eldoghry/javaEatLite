@@ -11,6 +11,7 @@
     - [7. Business Rules](#7-business-rules)
   - [Flow Chart](#flow-chart)
   - [Sequence Diagram](#sequence-diagram)
+  - [Pseudo code](#pseudo-code)
 
 ### Use Case: Place Order
 
@@ -107,3 +108,89 @@ Place Order
 ### Sequence Diagram
 
 ![Sequence](https://drive.google.com/uc?export=view&id=10Jv1OFPMRwTtaDJbSpbLsPuSlUjT9n4Q)
+
+### Pseudo code
+
+```typescript
+FUNCTION filterRestaurantsByLocation(location)
+    restaurants = getRestaurants(location)  // Fetch restaurants by location
+    RETURN restaurants
+END FUNCTION
+
+FUNCTION getRestaurantDetails(restaurantId)
+    restaurantDetails = fetchRestaurantDetails(restaurantId)  // Fetch restaurant details
+    RETURN restaurantDetails
+END FUNCTION
+
+FUNCTION addItemToCart(user, cartId, item)
+    IF NOT user.isAuthenticated THEN
+        cartId = createCartForGuest()  // Create a cart for guest users
+    ELSE IF cartId IS NULL THEN
+        cartId = createCartForUser(user)  // Create a cart for authenticated users
+    END IF
+
+    IF validateProductAvailability(item) THEN
+        addItem(cartId, item)
+        RETURN { success: true, cartId: cartId }
+    ELSE
+        RETURN { success: false, message: "Item not available" }
+    END IF
+END FUNCTION
+
+FUNCTION updateItemQuantity(cartId, itemId, quantity)
+    IF validateProductAvailability(itemId, quantity) THEN
+        updateCartItem(cartId, itemId, quantity)
+        RETURN { success: true }
+    ELSE
+        RETURN { success: false, message: "Item out of stock" }
+    END IF
+END FUNCTION
+
+FUNCTION deleteItemFromCart(cartId, itemId)
+    removeCartItem(cartId, itemId)
+    RETURN { success: true }
+END FUNCTION
+
+FUNCTION getUserAddresses(user)
+    addressList = getUserAddresses(user)
+    RETURN { addresses: addressList }
+END FUNCTION
+
+FUNCTION calculateTotal(cartId, address)
+    subTotal = calculateSubTotal(cartId)
+    tax = calculateTax(subTotal)
+    shippingCost = calculateShippingCost(address)
+    total = subTotal + tax + shippingCost
+    RETURN { total, subTotal, tax, shippingCost }
+END FUNCTION
+
+FUNCTION applyDiscount(cartId, couponCode)
+    IF validateCoupon(couponCode) THEN
+        applyCoupon(cartId, couponCode)
+        RETURN { success: true, discountApplied: true }
+    ELSE
+        RETURN { success: false, message: "Invalid coupon" }
+    END IF
+END FUNCTION
+
+FUNCTION placeOrder(user, cartId, paymentMethod)
+    orderId = createOrder(user, cartId)  // Create order and transaction
+
+    paymentUrl = processPayment(orderId, paymentMethod)  // Generate payment link
+    RETURN { paymentUrl }
+END FUNCTION
+
+FUNCTION handlePaymentCallback(orderId, status)
+    IF status == "failed" THEN
+        updateOrderStatus(orderId, "failed")
+        updateTransactionStatus(orderId, "failed")
+        notifyCustomer(orderId, "Payment failed")
+    ELSE IF status == "success" THEN
+        updateOrderStatus(orderId, "paid")
+        updateTransactionStatus(orderId, "processing")
+        notifyCustomer(orderId, "Order confirmed")
+        notifyRestaurant(orderId, "New order placed")
+        assignOrderToCourier(orderId)
+    END IF
+END FUNCTION
+```
