@@ -102,8 +102,8 @@ Place Order
 
 ### Flow Chart
 
-![flowchart](https://drive.google.com/file/d/1GsvMB1vqZOaBsnRQHJ1iceHVSVFzsKMV)
+![flowchart](https://drive.google.com/uc?export=view&id=1GsvMB1vqZOaBsnRQHJ1iceHVSVFzsKMV)
 
 ### Sequence Diagram
 
-![Sequence](https://drive.google.com/file/d/10Jv1OFPMRwTtaDJbSpbLsPuSlUjT9n4Q/view)
+![Sequence](https://drive.google.com/uc?export=view&id=10Jv1OFPMRwTtaDJbSpbLsPuSlUjT9n4Q)
