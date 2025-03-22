@@ -106,4 +106,4 @@ Place Order
 
 ### Sequence Diagram
 
-![Sequence](https://drive.google.com/file/d/10Jv1OFPMRwTtaDJbSpbLsPuSlUjT9n4Q)
+![Sequence](https://drive.google.com/file/d/10Jv1OFPMRwTtaDJbSpbLsPuSlUjT9n4Q/view)
